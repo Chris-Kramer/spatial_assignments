@@ -39,7 +39,6 @@ library(spDataLarge)
 
 # We wrote the code to create a new map of New Zealand.
 # Your role is to improve this map based on the suggestions below.
-
 tm_shape(nz_elev)  +
   tm_raster(title = "elev", 
             style = "cont",
@@ -73,7 +72,22 @@ tm_shape(nz_elev)  +
 # Your solution
 
 # /Start Code/ #
-
+tm_shape(nz_elev)  +
+  tm_raster(title = "elev (m asl)", 
+            style = "cont",
+            palette = "RdYlGn") +
+  tm_shape(nz) +
+  tm_borders(col = "black", 
+             lwd = 1.5) +
+  tm_scale_bar(breaks = c(0, 50, 100, 150),
+               text.size = 1) +
+  tm_compass(position = c("RIGHT", "top"),
+             type = "rose", 
+             size = 1) +
+  tm_credits(text = "Christoffer M. Kramer") +
+  tm_layout(main.title = "New Zealand",
+            bg.color = "light blue",
+            inner.margins = c(0, 0, 0, 0))
 
 # /End Code/ #
 
@@ -88,6 +102,22 @@ zion = read_sf(system.file("vector/zion.gpkg", package = "spDataLarge"))
 # Your solution
 
 # /Start Code/ #
-
-
+tm_shape(srtm)  +
+  tm_raster(title = "Elevation (m asl)", 
+            style = "pretty",
+            palette = "Greens") +
+  tm_shape(zion) + 
+  tm_borders(col = "black", 
+             lwd = 2) +
+  tm_scale_bar(breaks = c(0, 3, 6, 9),
+               text.size = 1,
+               position = "left") +
+  tm_legend(position=c("left", "center"), bg.color="grey95", frame=TRUE) +
+  tm_compass(position = c("center", "top"),
+             type = "rose", 
+             size = 1) +
+  tm_credits(text = "Christoffer M. Kramer", position = c("center", "bottom")) +
+  tm_layout(main.title = "Elevation in Zion National Park",
+            bg.color = "white",
+            inner.margins = c(0.01, 0.01, 0.01, 0.01))
 # /End Code/ #
